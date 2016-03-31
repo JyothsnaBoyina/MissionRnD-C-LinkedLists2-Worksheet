@@ -12,6 +12,7 @@ NOTES:
 */
 
 #include <stdio.h>
+#include<stdlib.h>
 
 struct node {
 	int num;
@@ -19,5 +20,33 @@ struct node {
 };
 
 struct node * reverseLinkedList(struct node *head) {
-	return NULL;
+	struct node *temp,*prev,*aftr;
+
+	if (head == NULL)
+		return NULL;
+	if (head->next== NULL)
+		return head;
+
+	temp = (struct node*)malloc(sizeof(struct node));
+	prev = (struct node*)malloc(sizeof(struct node));
+	aftr = (struct node*)malloc(sizeof(struct node));
+
+	prev = head;
+	temp = prev->next;
+	aftr = temp->next;
+	prev->next = NULL;
+
+	
+
+		while (temp->next != NULL)
+		{
+			temp->next = prev;
+			prev = temp;
+			temp = aftr;
+			aftr = temp->next;
+		}
+
+		temp->next = prev;
+	
+	return temp;
 }
